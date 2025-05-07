@@ -1,0 +1,13 @@
+"EPA Facility ID" has 2 duplicates:
+100000113101:
+Appears in df (from rmp_dates_metadata.csv) as:
+State: MI, "Report Received Date": 2000-12-01, "Report Created Date": 2024-11-29.
+State: MO, "Report Received Date": 2000-12-01, "Report Created Date": 2024-11-26.
+Appears in denormalized_df (from denormalized.csv) as:
+Two rows, both with "NAICS_Names": "Other Services to Buildings and Dwellings".
+100000179362:
+Appears in df as:
+State: MN, "Report Received Date": 2018-02-01, "Report Created Date": 2024-11-27.
+State: SD, "Report Received Date": 2018-02-01, "Report Created Date": 2024-11-29.
+Appears in denormalized_df as:
+Two rows, both with "NAICS_Names": NaN.
