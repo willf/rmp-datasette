@@ -24,8 +24,8 @@
                 {"column": "report_received_date", "type": "facet"}
               ],
               "spatial_index": {
-                "latitude": "latitude",
-                "longitude": "longitude"
+                "latitude": "Latitude",
+                "longitude": "Longitude"
               }
             },
             "facility_accident_view": {
