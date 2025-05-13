@@ -5,6 +5,10 @@
         "rmp_facility": {
           "fts_table": "rmp_facility_fts",
           "fts_pk": "epa_facility_id"
+        },
+        "facility_accident_view": {
+          "fts_table": "rmp_facility_accident_view_fts",
+          "fts_pk": "facility_accident_id"
         }
       }
     }
