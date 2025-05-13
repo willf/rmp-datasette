@@ -2,9 +2,9 @@
   "databases": {
     "risk-management-plans": {
       "tables": {
-        "rmp_facility": {},
-        "rmp_facility_fts": {
-          "fts_table": "rmp_facility_fts"
+        "rmp_facility": {
+          "fts_table": "rmp_facility_fts",
+          "fts_pk": "epa_facility_id"
         }
       }
     }
