@@ -2,4 +2,3 @@ datasette==0.65.1
 sqlite-utils>=3.35
 datasette-cluster-map
 datasette-render-markdown
-mod-spatialite
