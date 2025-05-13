@@ -13,42 +13,9 @@
       "databases": {
         "risk-management-plans": {
           "tables": {
-            "facility_view": {
-              "title": "Facilities",
-              "description": "Details of facilities in the EPA Risk Management Plans, including associated chemicals and NAICS classifications.",
-              "facets": [
-                {"column": "state", "type": "facet"},
-                {"column": "county", "type": "facet"},
-                {"column": "chemicals", "type": "facet"},
-                {"column": "naics_names", "type": "facet"},
-                {"column": "report_received_date", "type": "facet"}
-              ],
-              "spatial_index": {
-                "latitude": "Latitude",
-                "longitude": "Longitude"
-              }
-            },
-            "facility_accident_view": {
-              "title": "Facility Accidents",
-              "description": "Details of accidents at facilities, including associated NAICS codes and chemicals involved.",
-              "foreign_keys": [
-                {
-                  "columns": ["facility_id"],
-                  "other_table": "rmp_facility",
-                  "other_column": "epa_facility_id"
-                },
-                {
-                  "columns": ["naics_code"],
-                  "other_table": "rmp_naics",
-                  "other_column": "naics_code"
-                }
-              ],
-              "facets": [
-                {"column": "date_of_accident", "type": "facet"},
-                {"column": "release_duration", "type": "facet"},
-                {"column": "naics_code", "type": "facet"},
-                {"column": "chemicals", "type": "facet"}
-              ]
+            "rmp_facility": {},
+            "rmp_facility_fts": {
+              "fts_table": "rmp_facility_fts"
             }
           }
         }
