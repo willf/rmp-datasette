@@ -1,0 +1,136 @@
+chemical_id,chemical_name,cas_number,flammable_toxic
+1,Ammonia (anhydrous),7664-41-7,Toxic
+2,Chlorine,7782-50-5,Toxic
+3,Flammable Mixture,00-11-11,
+4,Propane,74-98-6,Flammable
+5,Butane,106-97-8,Flammable
+6,Pentane,109-66-0,Flammable
+7,Sulfur dioxide (anhydrous),7446-09-5,Toxic
+8,Hydrochloric acid (conc 37% or greater),7647-01-0,Toxic
+9,"Isopentane  [Butane, 2-methyl-]",78-78-4,Flammable
+10,Methane,74-82-8,Flammable
+11,Ethane,74-84-0,Flammable
+12,"Isobutane  [Propane, 2-methyl]",75-28-5,Flammable
+13,Hydrogen,1333-74-0,Flammable
+14,Acetylene  [Ethyne],74-86-2,Flammable
+15,Chlorine dioxide  [Chlorine oxide (ClO2)],10049-04-4,Toxic
+16,Vinyl acetate monomer  [Acetic acid ethenyl ester],108-05-4,Toxic
+17,Propylene  [1-Propene],115-07-1,Flammable
+18,Carbon disulfide,75-15-0,Toxic
+19,Isopropylamine [2-Propanamine],75-31-0,Flammable
+20,"Dimethylamine  [Methanamine, N-methyl-]",124-40-3,Flammable
+21,Propionitrile  [Propanenitrile],107-12-0,Toxic
+22,Cyclohexylamine  [Cyclohexanamine],108-91-8,Toxic
+23,Acrylonitrile  [2-Propenenitrile],107-13-1,Toxic
+24,Hydrogen fluoride/Hydrofluoric acid (conc 50% or greater) [Hydrofluoric acid],7664-39-3,Toxic
+25,Nitric acid (conc 80% or greater),7697-37-2,Toxic
+26,Phosgene  [Carbonic dichloride],75-44-5,Toxic
+27,"Difluoroethane  [Ethane, 1,1-difluoro-]",75-37-6,Flammable
+28,"Methyl ether  [Methane, oxybis-]",115-10-6,Flammable
+29,"Chloroform  [Methane, trichloro-]",67-66-3,Toxic
+30,Allyl alcohol  [2-Propen-1-ol],107-18-6,Toxic
+31,Formaldehyde (solution),50-00-0,Toxic
+32,"1,3-Butadiene",106-99-0,Flammable
+33,Ethyl mercaptan [Ethanethiol],75-08-1,Flammable
+34,"2,2-Dimethylpropane [Propane, 2,2-dimethyl-]",463-82-1,Flammable
+35,"Dichlorosilane  [Silane, dichloro-]",4109-96-0,Flammable
+36,"Trichlorosilane  [Silane, trichloro-]",10025-78-2,Flammable
+37,Hydrogen sulfide,7783-06-4,Toxic
+38,"Vinylidene fluoride [Ethene, 1,1-difluoro-]",75-38-7,Flammable
+39,"Trifluorochloroethylene [Ethene, chlorotrifluoro-]",79-38-9,Flammable
+40,Phosphorus trichloride  [Phosphorous trichloride],7719-12-2,Toxic
+41,Fluorine,7782-41-4,Toxic
+42,"Vinyl chloride  [Ethene, chloro-]",75-01-4,Flammable
+43,"Tetrafluoroethylene [Ethene, tetrafluoro-]",116-14-3,Flammable
+44,Ethylene  [Ethene],74-85-1,Flammable
+45,Sulfur trioxide,7446-11-9,Toxic
+46,"Iron, pentacarbonyl-  [Iron carbonyl (Fe(CO)5), (TB-5-11)-]",13463-40-6,Toxic
+47,Methyl mercaptan  [Methanethiol],74-93-1,Toxic
+48,Hydrocyanic acid,74-90-8,Toxic
+49,Acrolein  [2-Propenal],107-02-8,Toxic
+50,"Dimethyldichlorosilane  [Silane, dichlorodimethyl-]",75-78-5,Toxic
+51,"Methyltrichlorosilane  [Silane, trichloromethyl-]",75-79-6,Toxic
+52,"Trimethylchlorosilane  [Silane, chlorotrimethyl-]",75-77-4,Toxic
+53,"Ethylenediamine  [1,2-Ethanediamine]",107-15-3,Toxic
+54,"Ethyl ether  [Ethane, 1,1'-oxybis-]",60-29-7,Flammable
+55,"Vinyl methyl ether  [Ethene, methoxy-]",107-25-5,Flammable
+56,"Boron trifluoride  [Borane, trifluoro-]",7637-07-2,Toxic
+57,"Boron trifluoride compound with methyl ether (1:1)  [Boron, trifluoro[oxybis[metane]]-, T-4-",353-42-4,Toxic
+58,"Epichlorohydrin  [Oxirane, (chloromethyl)-]",106-89-8,Toxic
+59,"Methyl formate  [Formic acid, methyl ester]",107-31-3,Flammable
+60,Bromine,7726-95-6,Toxic
+61,Methylamine  [Methanamine],74-89-5,Flammable
+62,"Trimethylamine [Methanamine, N,N-dimethyl-]",75-50-3,Flammable
+63,"Toluene 2,6-diisocyanate  [Benzene, 1,3-diisocyanato-2-methyl-]",91-08-7,Toxic
+64,"Toluene 2,4-diisocyanate  [Benzene, 2,4-diisocyanato-1-methyl-]",584-84-9,Toxic
+65,Titanium tetrachloride  [Titanium chloride (TiCl4) (T-4)-],7550-45-0,Toxic
+66,Acetaldehyde,75-07-0,Flammable
+67,CBI Flammable Substance,00-00-00,Flammable
+68,Phosphorus oxychloride  [Phosphoryl chloride],10025-87-3,Toxic
+69,"Oleum (Fuming Sulfuric acid)  [Sulfuric acid, mixture with sulfur trioxide]",8014-95-7,Toxic
+70,"Toluene diisocyanate (unspecified isomer)  [Benzene, 1,3-diisocyanatomethyl-]",26471-62-5,Toxic
+71,"Propylene oxide  [Oxirane, methyl-]",75-56-9,Toxic
+72,2-Butene,107-01-7,Flammable
+73,"Methyl chloride  [Methane, chloro-]",74-87-3,Toxic
+74,Hydrazine,302-01-2,Toxic
+75,"Vinylidene chloride [Ethene, 1,1-dichloro-]",75-35-4,Flammable
+76,1-Pentene,109-67-1,Flammable
+77,2-Methyl-1-butene,563-46-2,Flammable
+78,Silane,7803-62-5,Flammable
+79,Acrylyl chloride  [2-Propenoyl chloride],814-68-6,Toxic
+80,"Ethyl chloride  [Ethane, chloro-]",75-00-3,Flammable
+81,Furan,110-00-9,Toxic
+82,"Isoprene  [1,3-Butadiene, 2-methyl-]",78-79-5,Flammable
+83,1-Butene,106-98-9,Flammable
+84,"2-Methylpropene  [1-Propene, 2-methyl-]",115-11-7,Flammable
+85,Butene,25167-67-3,Flammable
+86,Crotonaldehyde  [2-Butenal],4170-30-3,Toxic
+87,"Crotonaldehyde, (E)-  [2-Butenal, (E)-]",123-73-9,Toxic
+88,Ethylene oxide  [Oxirane],75-21-8,Toxic
+89,"Boron trichloride  [Borane, trichloro-]",10294-34-5,Toxic
+90,Phosphine,7803-51-2,Toxic
+91,Arsine,7784-42-1,Toxic
+92,"Tetramethylsilane  [Silane, tetramethyl-]",75-76-3,Flammable
+93,Peracetic acid  [Ethaneperoxoic acid],79-21-0,Toxic
+94,"Propadiene  [1,2-Propadiene]",463-49-0,Flammable
+95,"1,1-Dimethylhydrazine  [Hydrazine, 1,1-dimethyl-]",57-14-7,Toxic
+96,"Methyl hydrazine  [Hydrazine, methyl-]",60-34-4,Toxic
+97,2-Butene-cis,590-18-1,Flammable
+98,"2-Butene-trans  [2-Butene, (E)]",624-64-6,Flammable
+99,Propyne  [1-Propyne],74-99-7,Flammable
+100,Ethylamine  [Ethanamine],75-04-7,Flammable
+101,Hydrogen selenide,7783-07-5,Toxic
+102,Cyclopropane,75-19-4,Flammable
+103,"2-Pentene, (E)-",646-04-8,Flammable
+104,Allylamine  [2-Propen-1-amine],107-11-9,Toxic
+105,Piperidine,110-89-4,Toxic
+106,"2-Pentene, (Z)-",627-20-3,Flammable
+107,"Isopropyl chloroformate [Carbonochloridic acid, 1-methylethy ester]",108-23-6,Toxic
+108,"1,3-Pentadiene",504-60-9,Flammable
+109,3-Methyl-1-butene,563-45-1,Flammable
+110,Vinyl acetylene [1-Buten-3-yne],689-97-4,Flammable
+111,Carbon oxysulfide  [Carbon oxide sulfide (COS)],463-58-1,Flammable
+112,"Methyl isocyanate  [Methane, isocyanato-]",624-83-9,Toxic
+113,Cyanogen  [Ethanedinitrile],460-19-5,Flammable
+114,"Vinyl ethyl ether  [Ethene, ethoxy-]",109-92-2,Flammable
+115,"Methyl chloroformate  [Carbonochloridic acid, methylester]",79-22-1,Toxic
+116,"Vinyl fluoride  [Ethene, fluoro-]",75-02-5,Flammable
+117,Nitrogen Tetroxide,10544-72-6,Toxic
+118,Ethyl acetylene  [1-Butyne],107-00-6,Flammable
+119,"Isopropyl chloride [Propane, 2-chloro-]",75-29-6,Flammable
+120,"2-Chloropropylene [1-Propene, 2-chloro-]",557-98-2,Flammable
+121,"1-Chloropropylene [1-Propene, 1-chloro-]",590-21-6,Flammable
+122,"Chloromethyl methyl ether  [Methane, chloromethoxy-]",107-30-2,Toxic
+123,"Methacrylonitrile  [2-Propenenitrile, 2-methyl-]",126-98-7,Toxic
+124,Diborane,19287-45-7,Toxic
+125,Nitric oxide  [Nitrogen oxide (NO)],10102-43-9,Toxic
+126,Nickel carbonyl,13463-39-3,Toxic
+127,"Propyl chloroformate  [Carbonochloridic acid, propylester]",109-61-5,Toxic
+128,"Perchloromethylmercaptan [Methanesulfenyl chloride, trichloro-]",594-42-3,Toxic
+129,Ethyleneimine  [Aziridine],151-56-4,Toxic
+130,Cyanogen chloride,506-77-4,Toxic
+131,"Sulfur tetrafluoride  [Sulfur fluoride (SF4), (T-4)-]",7783-60-0,Toxic
+132,"Isobutyronitrile  [Propanenitrile, 2-methyl-]",78-82-0,Toxic
+133,"Propyleneimine  [Aziridine, 2-methyl-]",75-55-8,Toxic
+134,"Chloromethyl ether  [Methane, oxybis[chloro-]",542-88-1,Toxic
+135,"Tetranitromethane  [Methane, tetranitro-]",509-14-8,Toxic

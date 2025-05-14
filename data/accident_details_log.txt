@@ -1,0 +1,6 @@
+Processing started at Tue May 13 18:00:16 2025
+Error processing 100000158116.pdf: 'NoneType' object has no attribute 'group' at Tue May 13 18:00:19 2025
+Batch saved at 1000/1129 files at Tue May 13 18:00:31 2025
+Final batch saved at Tue May 13 18:00:33 2025
+Processing ended at Tue May 13 18:00:33 2025 with 1128/1129 files processed
+Total time: 16.39 seconds
