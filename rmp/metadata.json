@@ -8,28 +8,33 @@
   "databases": {
     "risk-management-plans": {
       "tables": {
-        "rmp_facility": {
-          "fts_table": "rmp_facility_fts",
-          "fts_pk": "epa_facility_id"
-        },
-        "facility_accident_view": {
-          "fts_table": "rmp_facility_accident_view_fts",
-          "fts_pk": "facility_accident_id",
-          "title": "Facility Accidents",
-          "description": "Details of accidents at facilities, including associated NAICS codes and chemicals involved.",
-          "facets": ["date_of_accident", "naics_code", "chemicals"]
-        },
         "facility_view": {
           "title": "Facilities",
           "description": "Details of facilities in the EPA Risk Management Plans, including associated chemical IDs and NAICS codes.",
-          "facets": ["state", "county", "naics_codes"]
+          "facets": ["state", "county", "naics_codes"],
+          "fts_table": "facility_fts",
+          "fts_pk": "epa_facility_id"
+        },
+        "facility_accidents_view": {
+          "title": "Facility Accidents",
+          "description": "Details of accidents in the EPA Risk Management Plans, including associated chemical names and NAICS codes.",
+          "facets": ["state", "county", "date_of_accident", "naics_code"],
+          "fts_table": "facility_accidents_fts",
+          "fts_pk": "facility_accident_id"
+        },
+        "accident_chemicals_view": {
+          "title": "Accident Chemicals",
+          "description": "Details of chemicals released during accidents in the EPA Risk Management Plans.",
+          "facets": ["state", "county", "date_of_accident", "chemical_name"],
+          "fts_table": "accident_chemicals_fts",
+          "fts_pk": "accident_chemical_id"
         }
       }
     }
   },
   "plugins": {
     "datasette-render-markdown": {
-      "columns": ["link", "report"]
+      "columns": ["report"]
     },
     "datasette-homepage-table": {
       "databases": {
@@ -38,8 +43,11 @@
             "facility_view": {
               "title": "Facilities"
             },
-            "facility_accident_view": {
+            "facility_accidents_view": {
               "title": "Facility Accidents"
+            },
+            "accident_chemicals_view": {
+              "title": "Accident Chemicals"
             }
           }
         }
