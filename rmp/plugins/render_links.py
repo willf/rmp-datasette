@@ -25,6 +25,11 @@ def render_cell(datasette, value, column, table, database, row):
             facility_accident_id = row["facility_accident_id"]
             return Markup(f'<a href="/risk-management-plans/facility_accidents_view/{facility_accident_id}">{value}</a>')
 
+    # Handle facility_id and accident_id for accident_chemicals_view
+    if table == "accident_chemicals_view":
+        if column == "facility_id":
+            return Markup(f'<a href="/risk-management-plans/rmp_facility/{value}">{value}</a>')
+
     # Handle epa_facility_id in facility_view
     if table == "facility_view" and column == "epa_facility_id" and value:
         return Markup(f'<a href="/risk-management-plans/rmp_facility/{value}">{value}</a>')
