@@ -33,25 +33,12 @@
     }
   },
   "plugins": {
+    "datasette-homepage-table": {
+      "database": "risk-management-plans",
+      "table": "accident_chemicals_view"
+    },
     "datasette-render-markdown": {
       "columns": ["report"]
-    },
-    "datasette-homepage-table": {
-      "databases": {
-        "risk-management-plans": {
-          "tables": {
-            "facility_view": {
-              "title": "Facilities"
-            },
-            "facility_accidents_view": {
-              "title": "Facility Accidents"
-            },
-            "accident_chemicals_view": {
-              "title": "Accident Chemicals"
-            }
-          }
-        }
-      }
     }
   }
 }
