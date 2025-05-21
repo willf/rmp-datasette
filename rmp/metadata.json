@@ -20,7 +20,7 @@
           "description": "Details of accidents in the EPA Risk Management Plans, including associated chemical names and NAICS codes.",
           "facets": ["state", "county", "date_of_accident", "naics_code"],
           "fts_table": "facility_accidents_fts",
-          "fts_pk": "facility_accident_id"
+          "fts_pk": "rowid"
         },
         "accident_chemicals_view": {
           "title": "Accident Chemicals",
@@ -33,12 +33,21 @@
     }
   },
   "plugins": {
+      "datasette-render-markdown": {
+      "columns": ["report"]
+    },
     "datasette-homepage-table": {
       "database": "risk-management-plans",
-      "table": "accident_chemicals_view"
+      "table": "facility_view",
     },
-    "datasette-render-markdown": {
-      "columns": ["report"]
+    "datasette-cluster-map": {
+      "latitude": "latitude",
+      "longitude": "longitude"
+    },
+    "datasette-cluster-map-geojson": {
+      "latitude": "latitude",
+      "longitude": "longitude",
+      "geojson": true
     }
   }
 }
