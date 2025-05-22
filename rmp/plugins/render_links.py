@@ -12,20 +12,22 @@ def render_cell(datasette, value, column, table, database, row):
     if database != "risk-management-plans":
         return None
 
-    # Handle facility_id, naics_code, facility_accident_id, and accident_id for facility_accidents_view
+    # Handle facility_id, naics_code, and id for facility_accidents_view
     if table == "facility_accidents_view":
         if column == "facility_id":
             return Markup(f'<a href="/risk-management-plans/rmp_facility/{value}">{value}</a>')
         if column == "naics_code":
             return Markup(f'<a href="/risk-management-plans/rmp_naics/{value}">{value}</a>')
         if column == "facility_accident_id":
-            return Markup(f'<a href="/risk-management-plans/facility_accidents_view/{value}">{value}</a>')
+            # Use the id (new primary key) from the same row to link
+            record_id = row["id"] if "id" in row.keys() else None
+            return Markup(f'<a href="/risk-management-plans/facility_accidents_view/{record_id}">{value}</a>') if record_id else None
         if column == "accident_id":
-            # Use the facility_accident_id from the same row to link to facility_accidents_view
-            facility_accident_id = row["facility_accident_id"]
-            return Markup(f'<a href="/risk-management-plans/facility_accidents_view/{facility_accident_id}">{value}</a>')
+            # Use the id (new primary key) from the same row to link
+            record_id = row["id"] if "id" in row.keys() else None
+            return Markup(f'<a href="/risk-management-plans/facility_accidents_view/{record_id}">{value}</a>') if record_id else None
 
-    # Handle facility_id and accident_id for accident_chemicals_view
+    # Handle facility_id for accident_chemicals_view
     if table == "accident_chemicals_view":
         if column == "facility_id":
             return Markup(f'<a href="/risk-management-plans/rmp_facility/{value}">{value}</a>')
