@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ metadata.title | default("EPA Risk Management Plans | EDGI") }}</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2e7d32",
+              secondary: "#1565c0",
+              darkbg: "#111827",
+              card: "#1f2937",
+              border: "#374151",
+              textlight: "#e5e7eb",
+              accent: "#10b981"
+            },
+            borderRadius: {
+              button: "8px",
+              card: "16px"
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #111827;
+        color: #e5e7eb;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .map-container {
+        background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png');
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body class="bg-darkbg">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-md border-b border-border">
+      <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="flex items-center">
+          <div class="w-10 h-10 flex items-center justify-center mr-3">
+            <i class="ri-earth-line text-white ri-2x"></i>
+          </div>
+          <div class="font-['Pacifico'] text-white text-xl">EDGI</div>
+        </div>
+        <h1 class="text-white text-xl md:text-2xl font-medium">EPA Risk Management Plans</h1>
+        <div class="w-10 h-10 flex items-center justify-center">
+          <i class="ri-menu-line text-white ri-lg md:hidden"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-16 pb-12">
+
+      <!-- Map Section -->
+      <section class="container mx-auto px-4 mt-8">
+        <div class="bg-card rounded shadow-lg overflow-hidden border border-border">
+          <div class="map-container w-full"></div>
+        </div>
+      </section>
+
+      <!-- Statistics Cards -->
+      <section class="container mx-auto px-4 mt-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a href="/risk-management-plans/facility_view" class="bg-card rounded p-6 shadow-sm text-center border border-border">
+            <h2 class="text-4xl font-bold text-accent mb-2">21,561</h2>
+            <p class="text-gray-300">Total Facilities</p>
+          </a>
+          <a href="/risk-management-plans/facility_accidents_view" class="bg-card rounded p-6 shadow-sm text-center border border-border">
+            <h2 class="text-4xl font-bold text-accent mb-2">1,554</h2>
+            <p class="text-gray-300">Total Accidents</p>
+          </a>
+          <a href="/risk-management-plans/accident_chemicals_view" class="bg-card rounded p-6 shadow-sm text-center border border-border">
+            <h2 class="text-4xl font-bold text-accent mb-2">2,301</h2>
+            <p class="text-gray-300">Chemicals in Accidents</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Info Section -->
+      <section class="container mx-auto px-4 mt-16">
+        <div class="bg-card rounded shadow-sm p-6 border border-border">
+          <h2 class="text-2xl font-medium text-textlight mb-4">About EPA Risk Management Plans</h2>
+          <p class="text-gray-300 mb-4">
+            The Environmental Data & Governance Initiative (EDGI) provides this tool to help citizens explore data from the EPA's Risk Management Plan (RMP) program. This program requires facilities that use extremely hazardous substances to develop plans to manage risks and prevent accidents.
+          </p>
+          <p class="text-gray-300 mb-4">
+            Our interactive map and database allow you to explore facilities near you, view accident history, and understand the potential risks in your community. The data is updated regularly to provide the most current information available.
+          </p>
+
+          <div class="mt-6 flex flex-col md:flex-row gap-6">
+            <div class="flex-1 bg-gray-700 p-5 rounded border border-gray-600">
+              <h3 class="text-lg font-medium text-accent mb-3 flex items-center">
+                <i class="ri-search-line text-accent mr-2"></i> Data Exploration
+              </h3>
+              <p class="text-gray-300">Search for facilities by location, industry type, or chemical. Filter results to find exactly what you're looking for and export data for your own analysis.</p>
+            </div>
+            <div class="flex-1 bg-gray-700 p-5 rounded border border-gray-600">
+              <h3 class="text-lg font-medium text-accent mb-3 flex items-center">
+                <i class="ri-bar-chart-line text-accent mr-2"></i> Visualize Trends
+              </h3>
+              <p class="text-gray-300">View charts and graphs that illustrate accident frequency, common chemicals involved, and industry patterns to better understand environmental risks.</p>
+            </div>
+            <div class="flex-1 bg-gray-700 p-5 rounded border border-gray-600">
+              <h3 class="text-lg font-medium text-accent mb-3 flex items-center">
+                <i class="ri-community-line text-accent mr-2"></i> Community Resources
+              </h3>
+              <p class="text-gray-300">Access guides, fact sheets, and educational materials to help communities understand and address environmental risks in their area.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Cards -->
+      <section class="container mx-auto px-4 mt-16">
+        <h2 class="text-xl font-semibold text-white mb-4 text-center">Explore Dataset Sections</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a href="/risk-management-plans/tbl_accident_details" class="block bg-card p-6 rounded-card border border-border hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-article-line mr-2"></i> Detailed Causes</h3>
+            <p class="text-sm text-gray-400">Full RMP causal analysis of each accident</p>
+          </a>
+          <a href="/risk-management-plans/rmp_chemical" class="block bg-card p-6 rounded-card border border-border hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-archive-line mr-2"></i> Chemical Reference</h3>
+            <p class="text-sm text-gray-400">135 substances with CAS numbers and classifications</p>
+          </a>
+          <a href="/risk-management-plans/rmp_naics" class="block bg-card p-6 rounded-card border border-border hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-briefcase-line mr-2"></i> NAICS Directory</h3>
+            <p class="text-sm text-gray-400">503 industry codes and descriptions</p>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-border py-8 mt-12">
+      <div class="container mx-auto px-4 text-sm text-gray-400 text-center">
+        © 2025 EDGI — Environmental Data & Governance Initiative. Data licensed under <a href="https://opendatacommons.org/licenses/odbl/" class="text-secondary hover:underline">ODbL</a>.
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Custom dark theme loaded.");
+      });
+    </script>
+  </body>
+</html>

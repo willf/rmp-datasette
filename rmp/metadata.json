@@ -36,10 +36,6 @@
       "datasette-render-markdown": {
       "columns": ["report"]
     },
-    "datasette-homepage-table": {
-      "database": "risk-management-plans",
-      "table": "facility_view",
-    },
     "datasette-cluster-map": {
       "latitude": "latitude",
       "longitude": "longitude"

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ metadata.title | default("EPA Risk Management Plans | EDGI") }}</title>
+
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            header: '#005EA2',
+            primary: '#1A4480',
+            accent: '#0071BC',
+            background: '#F7F7F7',
+            card: '#FFFFFF',
+            border: '#CCCCCC',
+            text: '#333333',
+            textlight: '#666666'
+          },
+          borderRadius: {
+            button: '8px',
+            card: '0px'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F7F7F7;
+      color: #333;
+    }
+    .map-container {
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #CCC;
+    }
+    .map-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body class="bg-background">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-header text-white shadow-md">
+    <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div class="flex items-center">
+        <div class="w-10 h-10 flex items-center justify-center mr-3">
+          <i class="ri-earth-line text-white ri-2x"></i>
+        </div>
+        <div class="text-xl font-semibold">EPA Risk Management Plans</div>
+      </div>
+      <div class="flex items-center">
+        <a href="https://envirodatagov.org/" class="text-xl md:text-2xl font-semibold mr-3 text-white hover:text-gray-200">EDGI</a>
+        <div class="w-10 h-10 flex items-center justify-center">
+          <i class="ri-menu-line text-white ri-lg md:hidden"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-20 pb-6">
+
+    <!-- Header Image Section -->
+    <section class="mt-4">
+      <div class="map-container">
+        <img src="/static/header.png" alt="Facility Header" class="map-image" />
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="container mx-auto px-4 mt-8">
+      <div class="bg-card rounded-card p-6 border border-border">
+        <h2 class="text-2xl font-semibold text-primary mb-4">About EPA Risk Management Plans</h2>
+        <p class="text-text mb-4">
+          At the Environmental Data & Governance Initiative (EDGI), we believe access to transparent environmental data is a cornerstone of justice and community empowerment. This tool, built in collaboration with data enthusiasts and environmental advocates, leverages the EPA's Risk Management Plan (RMP) program data to shine a light on facilities handling hazardous substances across the U.S.
+        </p>
+        <p class="text-text mb-4">
+          Powered by Datasette and hosted on Render.com, our platform enables you to explore facility locations, delve into accident histories, and understand chemical risks in your community. With regularly updated data, we aim to equip you with the knowledge to advocate for safer, healthier environments—honoring the spirit of stewardship for our shared Earth, or 'Etugen Mother.'
+        </p>
+
+        <div class="mt-6 flex flex-col md:flex-row gap-6">
+          <div class="flex-1 bg-white p-5 rounded-card border border-gray-200">
+            <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
+              <i class="ri-search-line text-accent mr-2"></i> Data Exploration
+            </h3>
+            <p class="text-textlight">Search for facilities by location, industry type, or chemical. Filter results to find exactly what you're looking for and export data for your own analysis.</p>
+          </div>
+          <div class="flex-1 bg-white p-5 rounded-card border border-gray-200">
+            <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
+              <i class="ri-bar-chart-line text-accent mr-2"></i> Visualize Trends
+            </h3>
+            <p class="text-textlight">View charts and graphs that illustrate accident frequency, common chemicals involved, and industry patterns to better understand environmental risks.</p>
+          </div>
+          <div class="flex-1 bg-white p-5 rounded-card border border-gray-200">
+            <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
+              <i class="ri-community-line text-accent mr-2"></i> Community Resources
+            </h3>
+            <p class="text-textlight">Access guides, fact sheets, and educational materials to help communities understand and address environmental risks in their area.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="container mx-auto px-4 mt-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/risk-management-plans/facility_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+          <h2 class="text-4xl font-bold mb-2">
+            {% set facility_count = sql("SELECT COUNT(*) FROM rmp_facility")[0][0] %}
+            {{ facility_count if facility_count is not none else "N/A" }}
+          </h2>
+          <p class="text-white hover:text-text">Total Facilities</p>
+        </a>
+        <a href="/risk-management-plans/facility_accidents_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+          <h2 class="text-4xl font-bold mb-2">
+            {% set accident_count = sql("SELECT COUNT(*) FROM rmp_facility_accidents")[0][0] %}
+            {{ accident_count if accident_count is not none else "N/A" }}
+          </h2>
+          <p class="text-white hover:text-text">Total Accidents</p>
+        </a>
+        <a href="/risk-management-plans/accident_chemicals_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+          <h2 class="text-4xl font-bold mb-2">
+            {% set chemical_count = sql("SELECT COUNT(DISTINCT chemical_name) FROM rmp_facility_chemicals JOIN rmp_chemical ON rmp_facility_chemicals.chemical_id = rmp_chemical.chemical_id")[0][0] %}
+            {{ chemical_count if chemical_count is not none else "N/A" }}
+          </h2>
+          <p class="text-white hover:text-text">Chemicals in Accidents</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <section class="container mx-auto px-4 mt-8">
+      <h2 class="text-xl font-semibold text-primary mb-4 text-center">Explore Dataset Sections</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/risk-management-plans/tbl_accident_details" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-article-line mr-2"></i> Detailed Causes</h3>
+          <p class="text-textlight">Full RMP causal analysis of each accident</p>
+        </a>
+        <a href="/risk-management-plans/rmp_chemical" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-archive-line mr-2"></i> Chemical Reference</h3>
+          <p class="text-textlight">Substances with CAS numbers and classifications</p>
+        </a>
+        <a href="/risk-management-plans/rmp_naics" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-briefcase-line mr-2"></i> NAICS Directory</h3>
+          <p class="text-textlight">Industry codes and descriptions</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-50 border-t border-gray-100 py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center mb-4 md:mb-0">
+          <div class="w-8 h-8 flex items-center justify-center mr-2">
+            <i class="ri-earth-line text-primary ri-lg"></i>
+          </div>
+          <a href="https://envirodatagov.org/" class="text-xl md:text-2xl font-semibold mr-3 text-primary hover:text-gray-200">EDGI</a>
+          <span class="text-gray-600 text-sm">Environmental Data & Governance Initiative</span>
+        </div>
+        <div class="flex flex-col md:flex-row items-center text-sm text-gray-500">
+          <a href="https://opendatacommons.org/licenses/odbl/" class="hover:text-primary mb-2 md:mb-0 md:mr-6">Data licensed under ODbL</a>
+          <a href="https://envirodatagov.org/privacy-notice/" class="hover:text-primary mb-2 md:mb-0 md:mr-6">Privacy Policy</a>
+          <a href="https://envirodatagov.org/terms-of-use/" class="hover:text-primary mb-2 md:mb-0 md:mr-6">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Add map functionality here if needed
+      console.log("Map initialized");
+    });
+  </script>
+
+</body>
+</html>
