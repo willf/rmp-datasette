@@ -5,5 +5,5 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-ENV PORT=8000
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "datasette:app", "--config", "python:datasette.gunicorn_config"]
+ENV PORT=8080
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "datasette:app", "--config", "python:datasette.gunicorn_config"]

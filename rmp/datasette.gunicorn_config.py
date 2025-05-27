@@ -6,8 +6,9 @@ def post_fork(server, worker):
         files=["/data/risk-management-plans.db"],
         metadata_path="/app/metadata.json",
         extra_options={
-            "--plugins-dir": "/app/plugins/",
-            "--template-dir": "/app/templates/"
+            "--plugins-dir": "/app/plugins",
+            "--template-dir": "/app/templates",
+            "--setting": "max_returned_rows 1000"
         }
     )
     server.app = datasette.app()
