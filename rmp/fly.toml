@@ -5,10 +5,10 @@ primary_region = "iad"
   dockerfile = "Dockerfile"
 
 [env]
-  PORT = "8080"
+  PORT = "8001"
 
 [http_service]
-  internal_port = 8080
+  internal_port = 8001
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true

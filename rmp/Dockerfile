@@ -5,5 +5,6 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-ENV PORT=8080
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "datasette:app", "--config", "python:datasette.gunicorn_config"]
+ENV PORT=8001
+CMD ["datasette", "serve", "--host", "0.0.0.0", "--port", "8001", "data/risk-management-plans.db"]
+EXPOSE 8001
