@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.9" /> <!-- Updated to 90% initial scale -->
+  <meta name="viewport" content="width=device-width, initial-scale=0.9" /> 
   <title>{{ metadata.title | default("EPA Risk Management Plans | EDGI") }}</title>
 
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
@@ -85,31 +85,44 @@
       <div class="bg-card rounded-card p-6 border border-border">
         <h2 class="text-2xl font-semibold text-primary mb-4">About EPA Risk Management Plans</h2>
         <p class="text-text mb-4">
-          At the Environmental Data & Governance Initiative (EDGI), we believe access to transparent environmental data is a cornerstone of justice and community empowerment. This tool, built in collaboration with data enthusiasts and environmental advocates, leverages the EPA's Risk Management Plan (RMP) program data to shine a light on facilities handling hazardous substances across the U.S.
+          According to the EPA, “Risk management plans (RMPs) provide valuable information to local fire, police, 
+          and emergency response personnel to prepare for and respond to chemical emergencies in their community. 
+          Making RMP information available to the public also fosters communication and awareness to improve accident 
+          prevention and emergency response practices at the local level.”
         </p>
         <p class="text-text mb-4">
-          Powered by Datasette and hosted on Render.com, our platform enables you to explore facility locations, delve into accident histories, and understand chemical risks in your community. With regularly updated data, we aim to equip you with the knowledge to advocate for safer, healthier environments—honoring the spirit of stewardship for our shared Earth.'
+          Prior to late April, 2025, the EPA provided an online tool to search for Risk Management Plans, 
+          but that online tool is no longer available. EDGI scraped the RMPs in late 2024, 
+          and this tool allows you to view those archived plans, as well do data analysis on facilities, accidents, and chemicals used. 
         </p>
-
+        <p class="text-text mb-4"> 
+          Our code is open source. The scraped plans, and the code used to collect them, can be found at 
+          <a href="https://github.com/edgi-govdata-archiving/epa-risk-management-plans?tab=readme-ov-file" class="text-accent hover:text-primary">github.com/edgi-govdata-archiving/epa-risk-management-plans</a>.
+          The code used to parse the report files and create the database behind this data can be found at 
+          <a href="https://github.com/Munkh976/rmp-datasette/" class="text-accent hover:text-primary">github.com/Munkh976/rmp-datasette</a>.
+        </p>
+        <p class="text-text">
+          The tool is based on <a href="https://datasette.io/" class="text-accent hover:text-primary">Datasette</a>, a general tool for "exploring and publishing data."
+        </p>
         <div class="mt-6 flex flex-col md:flex-row gap-6">
-          <div class="flex-1 bg-white p-5 rounded-card border border-gray-200">
+          <a href="/risk-management-plans/facility_view" class="flex-1 bg-white p-5 rounded-card border border-gray-200 hover:bg-gray-100 transition">
             <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
-              <i class="ri-search-line text-accent mr-2"></i> Data Exploration
+              <i class="ri-search-line text-accent mr-2"></i> Explore Facilities
             </h3>
-            <p class="text-textlight">Search for facilities by location, industry type, or chemical. Filter results to find exactly what you're looking for and export data for your own analysis.</p>
-          </div>
-          <div class="flex-1 bg-white p-5 rounded-card border border-gray-200">
+            <p class="text-textlight">Browse and filter over 21,000 facilities by location, industry (NAICS codes), or chemicals used to identify environmental risks in your area.</p>
+          </a>
+          <a href="/risk-management-plans/facility_accidents_view" class="flex-1 bg-white p-5 rounded-card border border-gray-200 hover:bg-gray-100 transition">
             <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
-              <i class="ri-bar-chart-line text-accent mr-2"></i> Visualize Trends
+              <i class="ri-bar-chart-line text-accent mr-2"></i> Analyze Accidents
             </h3>
-            <p class="text-textlight">View charts and graphs that illustrate accident frequency, common chemicals involved, and industry patterns to better understand environmental risks.</p>
-          </div>
-          <div class="flex-1 bg-white p-5 rounded-card border border-gray-200">
+            <p class="text-textlight">Examine all accident records to uncover patterns in chemical releases, including dates, locations, and involved substances.</p>
+          </a>
+          <a href="/risk-management-plans/accident_chemicals_view" class="flex-1 bg-white p-5 rounded-card border border-gray-200 hover:bg-gray-100 transition">
             <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
-              <i class="ri-community-line text-accent mr-2"></i> Community Resources
+              <i class="ri-community-line text-accent mr-2"></i> Chemical Releases
             </h3>
-            <p class="text-textlight">Access guides, fact sheets, and educational materials to help communities understand and address environmental risks in their area.</p>
-          </div>
+            <p class="text-textlight">Review chemical release incidents to understand quantities, substances, and impacted facilities for community preparedness.</p>
+          </a>
         </div>
       </div>
     </section>
@@ -117,26 +130,26 @@
     <!-- Statistics Section -->
     <section class="container mx-auto px-4 mt-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <a href="/risk-management-plans/facility_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
-          <h2 class="text-4xl font-bold mb-2">
-            {% set facility_count = sql("SELECT COUNT(*) FROM rmp_facility")[0][0] %}
-            {{ facility_count if facility_count is not none else "N/A" }}
-          </h2>
-          <p class="text-white hover:text-text">Total Facilities</p>
-        </a>
-        <a href="/risk-management-plans/facility_accidents_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+        <a href="/risk-management-plans/rmp_facility_accidents" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
           <h2 class="text-4xl font-bold mb-2">
             {% set accident_count = sql("SELECT COUNT(*) FROM rmp_facility_accidents")[0][0] %}
             {{ accident_count if accident_count is not none else "N/A" }}
           </h2>
-          <p class="text-white hover:text-text">Total Accidents</p>
+          <p class="text-white hover:text-text">Facility Accidents</p>
         </a>
-        <a href="/risk-management-plans/accident_chemicals_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+        <a href="/risk-management-plans/rmp_chemical" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
           <h2 class="text-4xl font-bold mb-2">
-            {% set chemical_count = sql("SELECT COUNT(DISTINCT chemical_name) FROM rmp_facility_chemicals JOIN rmp_chemical ON rmp_facility_chemicals.chemical_id = rmp_chemical.chemical_id")[0][0] %}
+            {% set chemical_count = sql("SELECT COUNT(*) FROM rmp_chemical")[0][0] %}
             {{ chemical_count if chemical_count is not none else "N/A" }}
           </h2>
-          <p class="text-white hover:text-text">Chemicals in Accidents</p>
+          <p class="text-white hover:text-text">Regulated Chemicals</p>
+        </a>
+        <a href="/risk-management-plans/rmp_naics" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+          <h2 class="text-4xl font-bold mb-2">
+            {% set naics_count = sql("SELECT COUNT(*) FROM rmp_naics")[0][0] %}
+            {{ naics_count if naics_count is not none else "N/A" }}
+          </h2>
+          <p class="text-white hover:text-text">Industry Codes</p>
         </a>
       </div>
     </section>
@@ -145,17 +158,17 @@
     <section class="container mx-auto px-4 mt-8">
       <h2 class="text-xl font-semibold text-primary mb-4 text-center">Explore Dataset Sections</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/risk-management-plans/rmp_facility_chemicals" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-flask-line mr-2"></i> Facility Chemicals</h3>
+          <p class="text-textlight">Explore data linking facilities to regulated chemicals and their program levels.</p>
+        </a>
         <a href="/risk-management-plans/tbl_accident_details" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
-          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-article-line mr-2"></i> Detailed Causes</h3>
-          <p class="text-textlight">Full RMP causal analysis of each accident</p>
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-alert-line mr-2"></i> Accident Causes</h3>
+          <p class="text-textlight">Investigate detailed causes of accidents, including equipment failures and human errors.</p>
         </a>
-        <a href="/risk-management-plans/rmp_chemical" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
-          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-archive-line mr-2"></i> Chemical Reference</h3>
-          <p class="text-textlight">Substances with CAS numbers and classifications</p>
-        </a>
-        <a href="/risk-management-plans/rmp_naics" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
-          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-briefcase-line mr-2"></i> NAICS Directory</h3>
-          <p class="text-textlight">Industry codes and descriptions</p>
+        <a href="/risk-management-plans/rmp_facility_naics" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-building-line mr-2"></i> Facility Industries</h3>
+          <p class="text-textlight">Browse data mapping facilities to their NAICS industry classifications.</p>
         </a>
       </div>
     </section>
