@@ -8,11 +8,11 @@ RUN pip install -r requirements.txt
 ENV PORT=8001
 EXPOSE 8001
 
-CMD ["datasette", "serve", "data/risk-management-plans.db", 
-     "--host", "0.0.0.0", 
-     "--port", "8001", 
-     "--setting", "sql_time_limit_ms", "2500", 
-     "--metadata", "metadata.json", 
-     "--plugins-dir", "plugins", 
-     "--template-dir", "templates", 
+CMD ["datasette", "serve", "risk-management-plans.db",
+     "--host", "0.0.0.0",
+     "--port", "8001",
+     "--setting", "sql_time_limit_ms", "2500",
+     "--metadata", "metadata.json",
+     "--plugins-dir", "plugins",
+     "--template-dir", "templates",
      "--static", "static:static"]
