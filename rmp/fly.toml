@@ -1,19 +1,34 @@
-app = "rmp-datasette"
-primary_region = "iad"
+# fly.toml app configuration file generated for rmp on 2025-05-26T21:27:33-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'rmp-datasette'
+primary_region = 'iad'
 
 [build]
+  builder = 'paketobuildpacks/builder:base'
   dockerfile = "Dockerfile"
 
+[env]
+  PORT = '8080'
+
 [http_service]
-  internal_port = 8000
+  internal_port = 8080
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 1
-  processes = ["app"]
+  processes = ['app']
 
-[env]
-  DATASETTE_SECRET = "your-secret-here"
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[mounts]
+  source = "datasette_data"
+  destination = "/app/data"
 
 [[mounts]]
   source = "data"
