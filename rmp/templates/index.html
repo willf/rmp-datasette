@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.9" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=0.9" />
   <title>{{ metadata.title | default("EPA Risk Management Plans | EDGI") }}</title>
 
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
   <script>
     tailwind.config = {
@@ -28,8 +29,14 @@
       }
     };
   </script>
+
+  <!-- Icons and Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/static/favicon.ico" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -50,6 +57,7 @@
     }
   </style>
 </head>
+
 <body class="bg-background">
 
   <!-- Header -->
@@ -57,17 +65,11 @@
     <div class="container mx-auto px-4 h-20 flex items-center justify-between">
       <div class="flex items-center">
         <div class="w-10 h-10 flex items-center justify-center mr-3">
-          <i class="ri-earth-line text-white ri-2x"></i>
+          <i class="ri-earth-line text-white ri-2x" aria-hidden="true"></i>
         </div>
         <div class="text-xl font-semibold">EPA Risk Management Plans</div>
       </div>
-      <div class="flex items-center">
-        <a href="https://envirodatagov.org/" class="text-xl md:text-2xl font-semibold mr-3 text-white hover:text-gray-200">EDGI</a>
-        <div class="w-10 h-10 flex items-center justify-center">
-          <i class="ri-menu-line text-white ri-lg md:hidden"></i>
-        </div>
-      </div>
-    </div>
+    </div> <!-- ✅ Closing missing header container div -->
   </header>
 
   <!-- Main Content -->
@@ -93,35 +95,36 @@
         <p class="text-text mb-4">
           Prior to late April, 2025, the EPA provided an online tool to search for Risk Management Plans, 
           but that online tool is no longer available. EDGI scraped the RMPs in late 2024, 
-          and this tool allows you to view those archived plans, as well do data analysis on facilities, accidents, and chemicals used. 
-        </p>
-        <p class="text-text mb-4"> 
+          and this tool allows you to view those archived plans, as well do data analysis on facilities, accidents, and chemicals used.         </p>
+        <p class="text-text mb-4">
           Our code is open source. The scraped plans, and the code used to collect them, can be found at 
-          <a href="https://github.com/edgi-govdata-archiving/epa-risk-management-plans?tab=readme-ov-file" class="text-accent hover:text-primary">github.com/edgi-govdata-archiving/epa-risk-management-plans</a>.
+          <a href="https://github.com/edgi-govdata-archiving/epa-risk-management-plans?tab=readme-ov-file" class="text-accent hover:text-primary">EDGI GitHub</a>, 
           The code used to parse the report files and create the database behind this data can be found at 
-          <a href="https://github.com/Munkh976/rmp-datasette/" class="text-accent hover:text-primary">github.com/Munkh976/rmp-datasette</a>.
+          <a href="https://github.com/Munkh976/rmp-datasette/" class="text-accent hover:text-primary">RMP Datasette GitHub</a>.
         </p>
         <p class="text-text">
-          The tool is based on <a href="https://datasette.io/" class="text-accent hover:text-primary">Datasette</a>, a general tool for "exploring and publishing data."
+          The tool is based on <a href="https://datasette.io/" class="text-accent hover:text-primary">Datasette</a> a general tool for "exploring and publishing data.
         </p>
+
+        <!-- Feature Cards -->
         <div class="mt-6 flex flex-col md:flex-row gap-6">
           <a href="/risk-management-plans/facility_view" class="flex-1 bg-white p-5 rounded-card border border-gray-200 hover:bg-gray-100 transition">
             <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
-              <i class="ri-search-line text-accent mr-2"></i> Explore Facilities
+              <i class="ri-bar-chart-line text-accent mr-2"></i> Facilities
             </h3>
-            <p class="text-textlight">Browse and filter over 21,000 facilities by location, industry (NAICS codes), or chemicals used to identify environmental risks in your area.</p>
+            <p class="text-textlight">Details of facilities in the EPA Risk Management Plans, including associated chemical names and NAICS codes.</p>
           </a>
           <a href="/risk-management-plans/facility_accidents_view" class="flex-1 bg-white p-5 rounded-card border border-gray-200 hover:bg-gray-100 transition">
             <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
-              <i class="ri-bar-chart-line text-accent mr-2"></i> Analyze Accidents
+              <i class="ri-bar-chart-line text-accent mr-2"></i> Accidents
             </h3>
-            <p class="text-textlight">Examine all accident records to uncover patterns in chemical releases, including dates, locations, and involved substances.</p>
+            <p class="text-textlight">Details of accidents in the EPA Risk Management Plans, including associated chemical names and NAICS codes.</p>
           </a>
           <a href="/risk-management-plans/accident_chemicals_view" class="flex-1 bg-white p-5 rounded-card border border-gray-200 hover:bg-gray-100 transition">
             <h3 class="text-lg font-semibold text-accent mb-3 flex items-center">
-              <i class="ri-community-line text-accent mr-2"></i> Chemical Releases
+              <i class="ri-bar-chart-line text-accent mr-2"></i> Chemical Releases
             </h3>
-            <p class="text-textlight">Review chemical release incidents to understand quantities, substances, and impacted facilities for community preparedness.</p>
+            <p class="text-textlight">Details of chemicals released during accidents in the EPA Risk Management Plans.</p>
           </a>
         </div>
       </div>
@@ -130,26 +133,26 @@
     <!-- Statistics Section -->
     <section class="container mx-auto px-4 mt-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <a href="/risk-management-plans/rmp_facility_accidents" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+        <a href="/risk-management-plans/facility_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+          <h2 class="text-4xl font-bold mb-2">
+            {% set facility_count = sql("SELECT COUNT(*) FROM rmp_facility")[0][0] %}
+            {{ facility_count if facility_count is not none else "N/A" }}
+          </h2>
+          <p class="text-white hover:text-text">Total Facilities</p>
+        </a>
+        <a href="/risk-management-plans/facility_accidents_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
           <h2 class="text-4xl font-bold mb-2">
             {% set accident_count = sql("SELECT COUNT(*) FROM rmp_facility_accidents")[0][0] %}
             {{ accident_count if accident_count is not none else "N/A" }}
           </h2>
-          <p class="text-white hover:text-text">Facility Accidents</p>
+          <p class="text-white hover:text-text">Total Accidents</p>
         </a>
-        <a href="/risk-management-plans/rmp_chemical" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
+        <a href="/risk-management-plans/accident_chemicals_view" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
           <h2 class="text-4xl font-bold mb-2">
-            {% set chemical_count = sql("SELECT COUNT(*) FROM rmp_chemical")[0][0] %}
+            {% set chemical_count = sql("SELECT COUNT(*) FROM rmp_accident_chemicals")[0][0] %}
             {{ chemical_count if chemical_count is not none else "N/A" }}
           </h2>
-          <p class="text-white hover:text-text">Regulated Chemicals</p>
-        </a>
-        <a href="/risk-management-plans/rmp_naics" class="bg-accent rounded-card p-6 text-center hover:bg-gray-200 transition text-white hover:text-text">
-          <h2 class="text-4xl font-bold mb-2">
-            {% set naics_count = sql("SELECT COUNT(*) FROM rmp_naics")[0][0] %}
-            {{ naics_count if naics_count is not none else "N/A" }}
-          </h2>
-          <p class="text-white hover:text-text">Industry Codes</p>
+          <p class="text-white hover:text-text">Chemicals in Accidents</p>
         </a>
       </div>
     </section>
@@ -158,17 +161,17 @@
     <section class="container mx-auto px-4 mt-8">
       <h2 class="text-xl font-semibold text-primary mb-4 text-center">Explore Dataset Sections</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <a href="/risk-management-plans/rmp_facility_chemicals" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
-          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-flask-line mr-2"></i> Facility Chemicals</h3>
-          <p class="text-textlight">Explore data linking facilities to regulated chemicals and their program levels.</p>
-        </a>
         <a href="/risk-management-plans/tbl_accident_details" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
-          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-alert-line mr-2"></i> Accident Causes</h3>
-          <p class="text-textlight">Investigate detailed causes of accidents, including equipment failures and human errors.</p>
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-bar-chart-line mr-2"></i> Detailed Accidents</h3>
+          <p class="text-textlight">Browse detailed information for each reported accident.</p>
         </a>
-        <a href="/risk-management-plans/rmp_facility_naics" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
-          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-building-line mr-2"></i> Facility Industries</h3>
-          <p class="text-textlight">Browse data mapping facilities to their NAICS industry classifications.</p>
+        <a href="/risk-management-plans/rmp_chemical" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-bar-chart-line mr-2"></i> Regulated Chemicals</h3>
+          <p class="text-textlight">Browse chemicals with their CAS numbers and classification.</p>
+        </a>
+        <a href="/risk-management-plans/rmp_naics" class="block bg-card p-6 rounded-card hover:bg-gray-100 transition text-center">
+          <h3 class="text-lg font-semibold text-accent mb-2"><i class="ri-bar-chart-line mr-2"></i> Industry Codes</h3>
+          <p class="text-textlight">Browse NAICS industry codes and their descriptions.</p>
         </a>
       </div>
     </section>
@@ -181,23 +184,26 @@
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex items-center mb-4 md:mb-0">
           <div class="w-8 h-8 flex items-center justify-center mr-2">
-            <i class="ri-earth-line text-primary ri-lg"></i>
+            <i class="ri-earth-line text-primary ri-lg" aria-hidden="true"></i>
           </div>
-          <a href="https://envirodatagov.org/" class="text-xl md:text-2xl font-semibold mr-3 text-primary hover:text-accent">EDGI</a>
-          <span class="text-gray-600 text-sm">Environmental Data & Governance Initiative</span>
+          <p class="text-primary">
+            Made with <span class="text-red-500" aria-label="love">❤</span> by 
+            <a href="https://envirodatagov.org" rel="nofollow" class="text-accent hover:text-primary">EDGI</a> and 
+            <a href="https://screening-tools.com/" rel="nofollow" class="text-accent hover:text-primary">Public Environmental Data Partners</a>.
+          </p>
         </div>
-        <div class="flex flex-col md:flex-row items-center text-sm text-gray-500">
-          <a href="https://opendatacommons.org/licenses/odbl/" class="hover:text-primary mb-2 md:mb-0 md:mr-6">Data licensed under ODbL</a>
-          <a href="https://envirodatagov.org/privacy-notice/" class="hover:text-primary mb-2 md:mb-0 md:mr-6">Privacy Policy</a>
-          <a href="https://envirodatagov.org/terms-of-use/" class="hover:text-primary mb-2 md:mb-0 md:mr-6">Terms of Use</a>
+        <div>
+          <a href="https://opendatacommons.org/licenses/odbl/" class="text-accent hover:text-primary">
+            Data licensed under ODbL
+          </a>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Optional JS -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Add map functionality here if needed
       console.log("Map initialized");
     });
   </script>

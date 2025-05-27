@@ -10,7 +10,7 @@
       "tables": {
         "facility_view": {
           "title": "Facilities",
-          "description": "Details of facilities in the EPA Risk Management Plans, including associated chemical IDs and NAICS codes.",
+          "description": "Details of facilities in the EPA Risk Management Plans, including associated chemical names and NAICS codes.",
           "facets": ["state", "county", "naics_codes"],
           "fts_table": "facility_fts",
           "fts_pk": "epa_facility_id"
@@ -28,22 +28,34 @@
           "facets": ["state", "county", "date_of_accident", "chemical_name"],
           "fts_table": "accident_chemicals_fts",
           "fts_pk": "accident_chemical_id"
+        },
+        "tbl_accident_details": {
+          "title": "Detailed Accidents",
+          "description": "Details of accidents in the EPA Risk Management Plans, including associated chemicals and injuries."
+        },
+        "rmp_chemical": {
+          "title": "Regulated Chemicals",
+          "description": "Regulated chemicals with their CAS numbers and classification."
+        },
+        "rmp_naics": {
+          "title": "Industry Codes",
+          "description": "NAICS industry codes and their descriptions."
         }
       }
-    }
-  },
+    },
   "plugins": {
       "datasette-render-markdown": {
       "columns": ["report"]
-    },
-    "datasette-cluster-map": {
-      "latitude": "latitude",
-      "longitude": "longitude"
-    },
-    "datasette-cluster-map-geojson": {
-      "latitude": "latitude",
-      "longitude": "longitude",
-      "geojson": true
+      },
+      "datasette-cluster-map": {
+        "latitude": "latitude",
+        "longitude": "longitude"
+      },
+      "datasette-cluster-map-geojson": {
+        "latitude": "latitude",
+        "longitude": "longitude",
+        "geojson": true
+      }
     }
   }
 }
