@@ -8,10 +8,25 @@ The EPA mandates RMPs for facilities using hazardous substances to ensure safety
 
 ## Data Source
 
-Data is sourced from the EPA's [RMP Search Tool](https://cdxapps.epa.gov/olem-rmp-pds/). The 21,561 PDFs, organized by state in the `reports` folder, were processed using:
-- `scrap_pdf_rmp_reports_to_csv.py`: Extracts data into CSV files (`rmp_chemical.csv`, `rmp_facility_chemicals.csv`, etc.), stored in the `data` folder.
-- `scrap_accidents_details_to_csv.py`: Extracts 1,554 accident details from 1,129 facilities, saved as `rmp_accident_details.csv` in the `data` folder.
-- `create_sqlite_rmp_db_from_csv.py`: Builds the `risk-management-plans.db` SQLite database with tables and views.
+The data utilized in this project originates from the U.S. Environmental Protection Agency's (EPA) Risk Management Plan (RMP) Search Tool. This tool allows users to search for RMP data by various criteria, including state, facility name, and other parameters.
+
+The Environmental Data & Governance Initiative (EDGI) leveraged this tool to download RMP data for all U.S. states and territories.
+
+In total, EDGI collected 21,560 RMP PDFs, which are publicly available in their GitHub repository: [edgi-govdata-archiving/epa-risk-management-plans](https://github.com/edgi-govdata-archiving/epa-risk-management-plans). These documents serve as the foundational data source for this project. The risk management reports are organized by state within the `reports/` directory of their repository.
+
+To process and structure this data for analysis and visualization, the following steps were undertaken:
+
+**Data Extraction:**
+- Scripts such as `scrap_pdf_rmp_reports_to_csv.py` and `scrap_accidents_details_to_csv.py` were used to extract relevant information from the PDFs into CSV format.
+- The extracted data includes details on facilities, chemicals, accidents, and NAICS codes.
+
+**Database Creation:**
+- The script `create_sqlite_rmp_db_from_csv.py` was employed to construct a SQLite database (`risk-management-plans.db`) from the CSV files.
+- This database organizes the data into structured tables and views for efficient querying.
+
+**Data Visualization:**
+- [Datasette](https://datasette.io/) was utilized to create an interactive interface for exploring the database.
+- Custom templates and plugins enhance the user experience, providing features such as full-text search, maps, and markdown rendering.
 
 ## File Structure
 
@@ -92,7 +107,7 @@ datasette rmp/risk-management-plans.db \
   --metadata rmp/metadata.json \
   --plugins-dir rmp/plugins \
   --template-dir rmp/templates \
-  --static static:rmp/static
+  --static static:static
 ```
 Then open your browser to: http://localhost:8001
 
