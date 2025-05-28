@@ -9,9 +9,42 @@ The EPA mandates RMPs for facilities using hazardous substances to ensure safety
 ## Data Source
 
 Data is sourced from the EPA's [RMP Search Tool](https://cdxapps.epa.gov/olem-rmp-pds/). The 21,561 PDFs, organized by state in the `reports` folder, were processed using:
-- `scrap_pdf_rmp_reports_to_csv.py`: Extracts data into CSV files (`rmp_chemical.csv`, `rmp_facility_chemicals.csv`, etc.), stored in the `Data` folder.
-- `scrap_accidents_details_to_csv.py`: Extracts 1,554 accident details from 1,129 facilities, saved as `rmp_accident_details.csv` in the `Data` folder.
+- `scrap_pdf_rmp_reports_to_csv.py`: Extracts data into CSV files (`rmp_chemical.csv`, `rmp_facility_chemicals.csv`, etc.), stored in the `data` folder.
+- `scrap_accidents_details_to_csv.py`: Extracts 1,554 accident details from 1,129 facilities, saved as `rmp_accident_details.csv` in the `data` folder.
 - `create_sqlite_rmp_db_from_csv.py`: Builds the `risk-management-plans.db` SQLite database with tables and views.
+
+## File Structure
+
+```
+rmp-datasette/ 
+├── rmp/
+│   ├── metadata.json
+│   ├── risk-management-plans.db
+│   ├── plugins/
+│   │   └── render_links.py
+│   ├── templates/
+│   │   └── index.html
+├── data/
+│   ├── accident_details_log.txt
+│   ├── accident_history_log.txt
+│   ├── fac_acc_chem_log.txt
+│   ├── risk-management-plans.db
+│   ├── rmp_accident_chemicals.csv
+│   ├── rmp_accident_detailed.csv
+│   ├── rmp_facility_accidents.csv
+│   ├── rmp_chemical.csv
+│   ├── rmp_facility.csv
+│   ├── rmp_facility_chemicals.csv
+│   ├── rmp_facility_naics.csv
+│   └── rmp_naics.csv
+├── script/
+    ├── create_accident_detail_sqlite.py
+    ├── create_sqlite_rmp_db_from_csv.py
+    ├── create_sqlite_views_and_fts_tables.py
+    ├── scrap_accidents_details_to_csv.py
+    ├── scrap_pdf_rmp_reports_to_csv.py
+    └── scrap_single_pdf_to_csv.py
+```
 
 ## Data Structure
 
@@ -48,18 +81,18 @@ To explore the data with Datasette:
 ```
 3. **Set Up the Database: Use the provided risk-management-plans.db. To regenerate from CSVs**:
 ```bash
-   python create_sqlite_rmp_db_from_csv.py
-   python create_accident_detail_sqlite.py
-   python create_sqlite_views_and_fts_tables.py
+   python script/create_sqlite_rmp_db_from_csv.py
+   python script/create_accident_detail_sqlite.py
+   python script/create_sqlite_views_and_fts_tables.py
 ```
 4. **Run Datasette with Custom Template and Homepage**:
 ```bash
-datasette risk-management-plans.db \
+datasette rmp/risk-management-plans.db \
   --setting sql_time_limit_ms 2500 \
-  --metadata metadata.json \
-  --plugins-dir plugins \
-  --template-dir templates \
-  --static static:static
+  --metadata rmp/metadata.json \
+  --plugins-dir rmp/plugins \
+  --template-dir rmp/templates \
+  --static static:rmp/static
 ```
 Then open your browser to: http://localhost:8001
 
