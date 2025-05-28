@@ -31,7 +31,7 @@ The SQLite database includes:
 | `facility_accidents_view` | Accident data with facility details and chemical names                      |
 | `accident_chemicals_view` | Chemicals released in accidents with facility and accident details          |
 
-Views (`facility_view`, `facility_accidents_view`, `accident_chemicals_view`) are optimized for Datasette, with full-text search via `facility_fts`, `facility_accidents_fts`, and `accident_chemicals_fts`. The `rmp_accident_details.csv` dataset, containing 1,554 accident details from 1,129 facilities, is integrated into `risk-management-plans.db` as the `tbl_accident_details` table, which feeds into `rmp_facility_accidents` and `rmp_accident_chemicals`.
+Views (`facility_view`, `facility_accidents_view`, `accident_chemicals_view`) are optimized for Datasette, with full-text search via `facility_fts`, `facility_accidents_fts`, and `accident_chemicals_fts`. The `rmp_accident_details.csv` dataset, containing 1,554 accident details from 1,129 facilities, is integrated into `risk-management-plans.db` as the `tbl_accident_details` table.
 
 ## Installation
 
@@ -44,7 +44,7 @@ To explore the data with Datasette:
 ```
 2. **Install Dependencies: Requires Python 3.8+**:
 ```bash
-   pip install datasette==0.65.1 sqlite-utils>=3.35 datasette-cluster-map datasette-render-markdown markupsafe
+   pip install datasette==0.65.1 sqlite-utils>=3.35 datasette-cluster-map datasette-render-markdown datasette-template-sql markupsafe==2.1.5
 ```
 3. **Set Up the Database: Use the provided risk-management-plans.db. To regenerate from CSVs**:
 ```bash
@@ -52,29 +52,42 @@ To explore the data with Datasette:
    python create_accident_detail_sqlite.py
    python create_sqlite_views_and_fts_tables.py
 ```
-4. **Run Datasette** :
+4. **Run Datasette with Custom Template and Homepage**:
 ```bash
-datasette risk-management-plans.db --metadata metadata.json --setting sql_time_limit_ms 2500 --metadata metadata.json --plugins-dir plugins
+datasette risk-management-plans.db \
+  --setting sql_time_limit_ms 2500 \
+  --metadata metadata.json \
+  --plugins-dir plugins \
+  --template-dir templates \
+  --static static:static
 ```
-Access at http://localhost:8001.
+Then open your browser to: http://localhost:8001
+
+## Custom Homepage
+
+The `index.html` file under `templates/` serves as a custom homepage with:
+- A visual header and introductory description
+- Dynamic links to key views: Facilities, Accidents, Chemicals
+- Statistics showing total counts from the database
+- Navigation cards to sub-sections like detailed accidents, regulated chemicals, and NAICS codes
+- Light/Dark mode toggle with persistent theme preference
 
 ## Exploring the Data
 Datasette offers:
 
-- Facets: Filter by state, county, NAICS codes, chemical names, or accident dates.
-- Search: Full-text search on facilities, accidents, and chemicals.
-- Maps: Visualize facility locations with datasette-cluster-map.
-- Markdown: Render report column as Markdown via datasette-render-markdown.
-- Custom Links: The render_links.py plugin (located in rmp/plugins) adds hyperlinks to columns like facility_id and accident_id, linking to related records in rmp_facility and facility_accidents_view.
-The metadata.json configures titles, descriptions, and facets for facility_view, facility_accidents_view, and accident_chemicals_view.
+- **Facets**: Filter by state, county, NAICS codes, chemical names, or accident dates.
+- **Search**: Full-text search on facilities, accidents, and chemicals.
+- **Maps**: Visualize facility locations with datasette-cluster-map.
+- **Markdown**: Render report column as Markdown via datasette-render-markdown.
+- **Custom Links**: The `render_links.py` plugin (in `plugins/`) adds hyperlinks to fields like `facility_id` and `accident_id`, linking to related rows in `rmp_facility` and `facility_accidents_view`.
 
 ## Scripts
-- scrap_pdf_rmp_reports_to_csv.py: Converts PDFs to CSVs, handling chemicals, NAICS, and accidents.
-- create_sqlite_rmp_db_from_csv.py: Creates the SQLite database with tables and views.
-- scrap_accidents_details_to_csv.py: Extracts accident details from PDFs into rmp_accident_details.csv.
+- `scrap_pdf_rmp_reports_to_csv.py`: Converts PDFs to CSVs, handling chemicals, NAICS, and accidents.
+- `create_sqlite_rmp_db_from_csv.py`: Creates the SQLite database with tables and views.
+- `scrap_accidents_details_to_csv.py`: Extracts accident details from PDFs into `rmp_accident_details.csv`.
 
 ## Plugins
-- render_links.py (in rmp/plugins): A custom Datasette plugin that enhances navigation by adding hyperlinks to facility_id and accident_id columns in facility_accidents_view and accident_chemicals_view, linking to related records in rmp_facility and other views.
+- `render_links.py` (in `plugins/`): A custom Datasette plugin that enhances navigation by linking identifiers to detailed records in related views.
 
 ## License
 Data is licensed under the Open Data Commons Open Database License (ODbL).
